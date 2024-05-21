@@ -6,35 +6,35 @@ on:
       FIRMWARE_DUMP_REPO:
         description: 'Your Firmware Dump URL'
         required: true
-        default: 'https://gitlab.com/kelexine/tecno-spark-8c-kg5j-rom-dump.git'
+        default: 'https://gitgud.io/okbuddygsi-dumps/samsung/a34x'
       FIRMWARE_DUMP_BRANCH:
         description: 'The Firmware Dump Branch'
         required: true
-        default: 'main'
+        default: 'a34xdxx-user-14-UP1A.231005.007-A346EXXS6BXD6-release-keys'
       DEVICE_TREE_REPO:
         description: 'Your Android Device Tree URL'
         required: true
-        default: 'https://github.com/kelexine/android_device_tecno_kelly'
+        default: 'https://github.com/Anything-at-25-00/android_device_samsung_a34x'
       DEVICE_TREE_BRANCH:
         description: 'Your Android Device Tree Branch'
         required: true
-        default: 'lineage-18.1'
+        default: 'lineage-21'
       DEVICE_CODENAME:
         description: 'Your Device Codename'
         required: true
-        default: 'kelly'
+        default: 'a34x'
       DEVICE_VENDORNAME:
         description: 'Your Device OEM Name'
         required: true
-        default: 'tecno'
+        default: 'samsung'
       USER_NAME:
         description: 'Name in Github Account'
         required: true
-        default: 'kelexine'
+        default: 'dmpstr'
       USER_EMAIL:
         description: 'E-mail in Github Account'
         required: true
-        default: 'frankiekelechi@gmail.com'
+        default: '168609344+dmpstr@users.noreply.github.com'
 
 jobs:
   build:
@@ -79,11 +79,13 @@ jobs:
         
     - name: Clone Firmware Dump
       run: |
+        GIT_CLONE_PROTECTION_ACTIVE=false
         mkdir workspace && cd workspace
         git clone --depth=1 ${{ env.FDR }} -b ${{ env.FDB }} ./firmware-dump
 
     - name: Clone Device Tree
       run: |
+        GIT_CLONE_PROTECTION_ACTIVE=false
         cd workspace
         git clone --depth=1 ${{ env.DTR }} -b ${{ env.DTB }} ./android/device/${{ env.DVN }}/${{ env.DCN }}
 
